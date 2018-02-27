@@ -18,16 +18,16 @@ cd $thisDir
 clear
 
 # logging level at info default
-java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App
+# java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App
 
 # logging level at debug
 java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -v
 
 # help text
-java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -help
+# java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -help
 
 # help text
-java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -version
+# java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -version
 
 echo "Press ENTER to close window ..."
 read aKey
