@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
+import com.l0tharius.schrodingersapp.menu.MenuBuilder;
 
 import joptsimple.OptionException;
 import joptsimple.OptionParser;
@@ -24,8 +25,8 @@ import java.sql.Statement;
 
 /*****************************************************************
  *
- *	Date: 2017
- *	@author COR
+ *	Date: 2018
+ *	@author COR replicated by l0tharius as part of CA
  *
  * 
  * The purpose of this application is to provide an example for the following:
@@ -78,16 +79,17 @@ public class App
 		LOG.info("Application started with log level debug:" + LOG.isDebugEnabled());
 		
 		//test the logging
-		testLogOutput();
+		//testLogOutput();
 		
 		this.someInput = new Scanner(System.in);
 		
+		MenuBuilder theMenu = new MenuBuilder();
 		//do something here: Display the list of users from the database
-		showListOfUsers();
 		
-		//do something here
-		System.out.println(" \n Soon ... stuff will happen here");		
+		//theMenu.print();
+		//LOG.debug(theMenu.display());
 		
+		theMenu.getMenu().display();
 		//pause before exit (this is only useful if an error occurs)
         System.out.println(" \n Press enter to exit the program");
 		this.someInput.nextLine();
@@ -95,6 +97,7 @@ public class App
 		//close the program without error
 		System.exit(0);
 	}
+	
 	
 	public App()
 	{
