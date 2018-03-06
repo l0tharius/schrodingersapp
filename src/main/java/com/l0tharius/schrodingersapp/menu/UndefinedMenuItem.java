@@ -2,6 +2,13 @@ package com.l0tharius.schrodingersapp.menu;
 
 import java.util.Scanner;
 
+/*****************************************************************
+*	Date: 2018
+*	@author COR replicated by l0tharius as part of CA
+*  
+* 
+*****************************************************************/
+
 public class UndefinedMenuItem implements IExecutable {
 	
 	Scanner input = new Scanner(System.in);

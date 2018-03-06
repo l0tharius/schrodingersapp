@@ -10,6 +10,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
+
+import com.l0tharius.schrodingersapp.data.DataManagerSQLite;
 import com.l0tharius.schrodingersapp.menu.MenuBuilder;
 
 import joptsimple.OptionException;
@@ -28,14 +30,6 @@ import java.sql.Statement;
  *	Date: 2018
  *	@author COR replicated by l0tharius as part of CA
  *
- * 
- * The purpose of this application is to provide an example for the following:
- * 
- * - Demonstrates the use of development tools : GIT, MAVEN, Eclipse
- * - Demonstrates how to use Eclipse
- * - Provides a refresher of OOP in Java
- * - Provide an introduction to project file structure layout - MAVEN Archetype
- * - Show how to setup Log4j2
  * 
  *****************************************************************/
 
@@ -65,6 +59,7 @@ public class App
 	//private String databaseFile = "jdbc:sqlite:database/schrodingersapp.db"; UNCOMMENT AND MODIFY FOR WINDOWS !!!
 	private String databaseFile = "jdbc:sqlite:/home/martins-ozols/_SOFTDEV/_DEV/schrodingersapp/database/schrodingersapp.db"; //  FOR LINUX AND MAC OS
 	//private String databaseFile = "jdbc:sqlite:./_SOFTDEV/_DEV/schrodingersapp/database/schrodingersapp.db"; // TEST not working
+	
 	// CONSTRUCTORS
 	//............................................................
 	
@@ -77,19 +72,16 @@ public class App
 		// Check the log level requested
 		LOG.info("Commandline requested log level:" + logLevel );		
 		LOG.info("Application started with log level debug:" + LOG.isDebugEnabled());
-		
-		//test the logging
-		//testLogOutput();
-		
+
 		this.someInput = new Scanner(System.in);
 		
-		MenuBuilder theMenu = new MenuBuilder();
-		//do something here: Display the list of users from the database
+		//set the database file to use
+		DataManagerSQLite.getInstance().setDataFile(this.databaseFile);
 		
-		//theMenu.print();
-		//LOG.debug(theMenu.display());
+		MenuBuilder theMenu = new MenuBuilder();
 		
 		theMenu.getMenu().display();
+		
 		//pause before exit (this is only useful if an error occurs)
         System.out.println(" \n Press enter to exit the program");
 		this.someInput.nextLine();
@@ -97,7 +89,6 @@ public class App
 		//close the program without error
 		System.exit(0);
 	}
-	
 	
 	public App()
 	{
@@ -107,63 +98,6 @@ public class App
     
 	// METHODS used by main() or debug methods - note they are static methods
 	//............................................................
-	
-	/**
-	 * write out the users in a users table for the database specified
-	 * 
-	 */
-	private void showListOfUsers()
-	{
-		this.today = new Date();
-		LOG.debug("Getting list of Users from Database as of " + today);
-		
-		//if log level id debug e.g. -v parameter used then show database file being used
-		LOG.debug("Database file:" + this.databaseFile);
-		
-		// Get JDBC connection to database
-		Connection connection = null;
-		
-        try
-        {
-        	  // create a database connection
-        	  connection = DriverManager.getConnection( this.databaseFile);
-        	
-          Statement statement = connection.createStatement();
-          statement.setQueryTimeout(30);  // set timeout to 30 sec.
-          
-          // Run the query
-          
-          ResultSet resultSet = statement.executeQuery("select * from user");
-          
-          // iterate through the results create User objects put in the ListArray
-          
-          while(resultSet.next())
-          {
-              LOG.debug( "User found: " + resultSet.getString("userName") );
-          }
-        	  
-        }
-        catch(SQLException e)
-        {
-          // if the error message is "out of memory",
-          // it probably means no database file is found
-          LOG.error(e.getMessage());
-        } 
-        finally
-        {
-          try
-          {
-            if(connection != null)
-              connection.close();
-          }
-          catch(SQLException e)
-          {
-            // connection close failed.
-            LOG.error(e.getMessage());
-          }
-        }
-		
-	}//EOM
 	
 	/**
 	 * action the arguments presented at the command line
@@ -190,14 +124,9 @@ public class App
 					System.exit(0);
 				}
 				
-				//if (options.has("version"))
-				//{
-					//System.out.println("schrodingersapp v3");
-					//System.exit(0);
-				//}
 				if (options.has("version"))
 				{
-					System.out.println("schrodingersapp version : " + VERSION);
+					System.out.println("Pythia version : " + VERSION);
 					System.exit(0);
 				}
 				
@@ -232,7 +161,6 @@ public class App
 	      }
 	      catch (IOException ioEx)
 	      {
-	         // System.out.println("ERROR: Unable to print usage - " + ioEx);
 	         LOG.error("ERROR: Unable to print usage - " + ioEx);
 	      }
 	 }//EOM
