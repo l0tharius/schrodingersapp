@@ -6,7 +6,7 @@ This code is part of a lecture course in software development
 
 ## Licence
 
-Author : http://ie.linkedin.com/in/conororeilly
+Author : COR, forked by l0tharius;
 
 Licensed under the Creative Commons Attribution 3.0 License
 

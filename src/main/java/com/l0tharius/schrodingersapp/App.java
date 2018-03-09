@@ -126,7 +126,7 @@ public class App
 				
 				if (options.has("version"))
 				{
-					System.out.println("Pythia version : " + VERSION);
+					System.out.println("Schrodingersapp version : " + VERSION);
 					System.exit(0);
 				}
 				

@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.l0tharius.schrodingersapp.user.UserDAO;
+import com.l0tharius.schrodingersapp.music.MusicDAO;
 
 /*****************************************************************
 *	Date: 2018
