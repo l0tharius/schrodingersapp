@@ -17,42 +17,17 @@ thisDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $thisDir
 clear
 
-### TESTING SCRIPT EXAMPLES BY COR
-
-# logging level at info default
-# java -cp target/pythia-v1.jar com.oreallyoreilly.pythia.App
-
-# logging level at debug
-# java -cp target/pythia-v1.jar com.oreallyoreilly.pythia.App -v
-
-# help text
-# java -cp target/pythia-v1.jar com.oreallyoreilly.pythia.App -help
-
-# help text
-# java -cp target/pythia-v1.jar com.oreallyoreilly.pythia.App -version
-
-# add database parameter
-# java -cp target/pythia-v1.jar com.oreallyoreilly.pythia.App -d jdbc:sqlite:database/oreallyoreilly.db
-
-# mySQL locator will be jdbc:mysql://hostname:port/dbname - so we could parse out :mysql: or :sqlite: so we know which database to connect to
-# - u for user, -p for password
-
-### RUN
-
 # logging level at info default
 # java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App
 
 # logging level at debug
-#java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -v
+java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -v
 
 # help text
 # java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -help
 
 # help text
 # java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -version
-
-# logging level at debug
-java -cp target/schrodingersapp-v1.jar com.l0tharius.schrodingersapp.App -v -d jdbc:sqlite:/home/martins-ozols/_SOFTDEV/_DEV/schrodingersapp/database/schrodingersapp.db
 
 echo "Press ENTER to close window ..."
 read aKey
